@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import { useAuth } from "@/stores";
-import { NotFound, Indexed, Shops, SingleProduct, Checkout } from "@/views/pages";
+import { NotFound, Indexed, Shop, SingleProduct, Checkout } from "@/views/pages";
 import { SellerPages, SellerStore, SellerApply } from "@/views/pages/seller"
 import { UserLogin, UserRegister } from "@/views/auth";
 import { MyOrderList, MyProfile, MyWishlist } from "@/views/user";
@@ -24,7 +24,7 @@ const routes = [
     {
         path: '/shops',
         name: 'shop.page',
-        component: Shops,
+        component: Shop,
         meta: { title: "shop" },
     },
     {

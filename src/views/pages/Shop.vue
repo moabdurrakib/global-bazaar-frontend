@@ -11,7 +11,7 @@
           <div class="row content-reverse">
             <div class="col-lg-3">
               <!-- <div class="shop-widget-promo">
-            <a href="#"><img src="images/promo/shop/01.jpg" alt="promo" /></a>
+            <a href="#"><img src="../../assets/images/promo/shop/01.jpg" alt="promo" /></a>
           </div> -->
               <div class="shop-widget">
                 <h6 class="shop-widget-title">Filter by Price</h6>
@@ -256,7 +256,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/06.jpg" alt="product"
+                        ><img src="../../assets/images/product/06.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -283,7 +283,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/13.png" alt="product"
+                        ><img src="../../assets/images/product/13.png" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -310,7 +310,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/12.png" alt="product"
+                        ><img src="../../assets/images/product/12.png" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -337,7 +337,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/03.jpg" alt="product"
+                        ><img src="../../assets/images/product/03.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -364,7 +364,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/03.jpg" alt="product"
+                        ><img src="../../assets/images/product/03.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -391,7 +391,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/03.jpg" alt="product"
+                        ><img src="../../assets/images/product/03.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -418,7 +418,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/03.jpg" alt="product"
+                        ><img src="../../assets/images/product/03.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -445,7 +445,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/09.jpg" alt="product"
+                        ><img src="../../assets/images/product/09.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -472,7 +472,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/03.jpg" alt="product"
+                        ><img src="../../assets/images/product/03.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -499,7 +499,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/03.jpg" alt="product"
+                        ><img src="../../assets/images/product/03.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -526,7 +526,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/07.jpg" alt="product"
+                        ><img src="../../assets/images/product/07.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -553,7 +553,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/03.jpg" alt="product"
+                        ><img src="../../assets/images/product/03.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -580,7 +580,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/04.jpg" alt="product"
+                        ><img src="../../assets/images/product/04.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -607,7 +607,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/02.jpg" alt="product"
+                        ><img src="../../assets/images/product/02.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -633,7 +633,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/01.jpg" alt="product"
+                        ><img src="../../assets/images/product/01.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
@@ -660,7 +660,7 @@
                       <button class="product-wish wish">
                         <i class="fas fa-heart"></i></button
                       ><a class="product-image" href="product-video.html"
-                        ><img src="images/product/05.jpg" alt="product"
+                        ><img src="../../assets/images/product/05.jpg" alt="product"
                       /></a>
                     </div>
                     <div class="product-content">
