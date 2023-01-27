@@ -24,7 +24,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: vue-ecommerce@moabdurrakib.com
+        server: ftp.moabdurrakib.com
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
         exclude: |
