@@ -16,22 +16,22 @@
                     ><label class="view-label off">-10%</label>
                   </div>
                   <ul class="preview-slider slider-arrow">
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
                   </ul>
                   <ul class="thumb-slider">
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="./assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
+                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
                   </ul>
                 </div>
               </div>

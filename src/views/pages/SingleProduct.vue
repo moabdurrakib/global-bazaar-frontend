@@ -3,7 +3,7 @@
         <section
         class="single-banner inner-section"
         style="
-          background: url('/website/images/single-banner.jpg') center center
+          background: url('../../assets/images/single-banner.jpg') center center
             no-repeat;
         "
       >
@@ -188,7 +188,7 @@
                       <div class="review-media">
                         <a class="review-avatar" href="#"
                           ><img
-                            src="/website/images/avatar/01.jpg"
+                            src="../../assets/images/about/01.jpg"
                             alt="review"
                         /></a>
                         <h5 class="review-meta">
@@ -219,7 +219,7 @@
                           <div class="review-media">
                             <a class="review-avatar" href="#"
                               ><img
-                                src="/website/images/avatar/02.jpg"
+                                src="../../assets/images/about/02.jpg"
                                 alt="review"
                             /></a>
                             <h5 class="review-meta">
@@ -246,7 +246,7 @@
                           <div class="review-media">
                             <a class="review-avatar" href="#"
                               ><img
-                                src="/website/images/avatar/03.jpg"
+                                src="../../assets/images/about/03.jpg"
                                 alt="review"
                             /></a>
                             <h5 class="review-meta">
@@ -275,7 +275,7 @@
                       <div class="review-media">
                         <a class="review-avatar" href="#"
                           ><img
-                            src="/website/images/avatar/04.jpg"
+                            src="../../assets/images/about/04.jpg"
                             alt="review"
                         /></a>
                         <h5 class="review-meta">
