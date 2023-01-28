@@ -41,7 +41,7 @@ export const useAuth = defineStore('auth', {
                 const res = await axiosInstance.post("/user/register", formData)
 
 
-                if (res.status === 200) {
+                if (res.status === 201) {
                     // console.log(res.data);
                     // this.user = res.data
                     return new Promise((resolve) => {
