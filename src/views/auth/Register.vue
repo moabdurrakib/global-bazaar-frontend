@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref,reactive } from "vue";
 import { useAuth } from "@/stores/auth";
 // import { storeToRefs } from "pinia";
 import { Field, Form } from "vee-validate";
@@ -33,8 +33,8 @@ const onSubmit = async (values, { setErrors }) => {
 
   if (res.data) {
     // alert("login success");
-    // router.push({ name: 'index.page' });
-    sendOtp.value = true;
+    router.push({ name: 'index.page' });
+    sendOtp.value = false;
     ElNotification({
       title: "Login Success",
       message: "Welcome to the home Page",
@@ -51,14 +51,35 @@ const showPassword = ref(false);
 const toggleShow = () => {
   showPassword.value = !showPassword.value;
 };
+// Send otp
+const sendOtp = ref(true)
 
-const sendOtp = ref(false)
+const verifyForm = reactive({
+  phone:"",
+  otp_code:"",
+})
 
 const schemaOtpVerify= yup.object({
   otp_code:yup.number().required("Input Your otp code").min(6),
 })
 
-const otpVerify =async(values)=>{};
+const otpVerify =async (values, { setErrors }) => {
+  const res = await auth.otpVerify(values);
+
+  if (res.data) {
+    // alert("login success");
+    // router.push({ name: 'index.page' });
+    sendOtp.value = true;
+    ElNotification({
+      title: "Success",
+      message: "OTP send Successfully",
+      type: 'success',
+      position:"top-left"
+    });
+  } else {
+    setErrors(res);
+  }
+};
 </script>
 <template>
   <div>
@@ -107,6 +128,7 @@ const otpVerify =async(values)=>{};
                       name="phone"
                       type="text"
                       class="form-control"
+                      v-model="verifyForm.phone"
                       placeholder="enter your phone number"
                       :class="{ 'is-invalid': errors.phone }"
                     /><!--v-if-->
@@ -197,6 +219,7 @@ const otpVerify =async(values)=>{};
                       name="otp_code"
                       type="text"
                       class="form-control"
+                      v-model="verifyForm.otp_code"
                       placeholder="otp_code"
                       :class="{ 'is-invalid': errors.otp_code }"
                     /><!--v-if-->
