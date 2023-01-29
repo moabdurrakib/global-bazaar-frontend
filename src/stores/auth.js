@@ -88,6 +88,35 @@ export const useAuth = defineStore('auth', {
             }
 
         },
+        async resendOtp(phone) {
+            try {
+                const res = await axiosInstance.post("/user/otp-resend",{
+                    phone: phone,
+                })
+
+
+                if (res.status === 200) {
+                    // console.log(res.data);
+                    this.user = res.data
+                    return new Promise((resolve) => {
+                        resolve(res.data)
+                    })
+                }
+
+            }
+            catch (error) {
+                if (error.response.data) {
+                    // this.errors= error.response.data.errors;
+                    // console.log(error)
+
+                    return new Promise((reject) => {
+                        reject(error = error.response.data.errors)
+                    })
+                }
+            }
+
+        },
+       
 
         async logout() {
             this.loading = true;

@@ -1,21 +1,26 @@
 <script setup>
-import { ref,reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useAuth } from "@/stores/auth";
 // import { storeToRefs } from "pinia";
 import { Field, Form } from "vee-validate";
-import { ElNotification } from "element-plus";
+import { countdownEmits, ElNotification } from "element-plus";
 import { useRouter } from "vue-router";
 
 import * as yup from "yup";
-
 
 const schema = yup.object({
   name: yup.string().required(),
   email: yup.string().required().email(),
   phone: yup.string().required(),
   password: yup.string().required().min(8),
-  password_confirmation: yup.string().required("Password Confirmation is a required field").min(8)
-  .oneOf([yup.ref("password"),null],"password and confirm password must be  match"),
+  password_confirmation: yup
+    .string()
+    .required("Password Confirmation is a required field")
+    .min(8)
+    .oneOf(
+      [yup.ref("password"), null],
+      "password and confirm password must be  match"
+    ),
 });
 
 const auth = useAuth();
@@ -27,19 +32,19 @@ const router = useRouter();
 
 // vee
 
-
 const onSubmit = async (values, { setErrors }) => {
   const res = await auth.register(values);
 
-  if (res.data) {
+  if (res.status) {
     // alert("login success");
-    router.push({ name: 'index.page' });
-    sendOtp.value = false;
+    // router.push({ name: "index.page" }) ;
+    setTime(120)
+    sendOtp.value = true; 
     ElNotification({
-      title: "Login Success",
-      message: "Welcome to the home Page",
-      type: 'success',
-      position:"top-left"
+      title: "Success",
+      message: "6 digit Verification Code Send Success",
+      type: "success",
+      position: "top-left",
     });
   } else {
     setErrors(res);
@@ -52,18 +57,18 @@ const toggleShow = () => {
   showPassword.value = !showPassword.value;
 };
 // Send otp
-const sendOtp = ref(true)
+const sendOtp = ref(false);
 
 const verifyForm = reactive({
-  phone:"",
-  otp_code:"",
-})
+  phone: "",
+  otp_code: "",
+});
 
-const schemaOtpVerify= yup.object({
-  otp_code:yup.number().required("Input Your otp code").min(6),
-})
+const schemaOtpVerify = yup.object({
+  otp_code: yup.number().required("Input Your otp code").min(6),
+});
 
-const otpVerify =async (values, { setErrors }) => {
+const otpVerify = async (values, { setErrors }) => {
   const res = await auth.otpVerify(values);
 
   if (res.data) {
@@ -73,13 +78,69 @@ const otpVerify =async (values, { setErrors }) => {
     ElNotification({
       title: "Success",
       message: "OTP send Successfully",
-      type: 'success',
-      position:"top-left"
+      type: "success",
+      position: "top-left",
     });
   } else {
     setErrors(res);
   }
 };
+
+//Start Countdown
+
+// const selectedTime = ref(0);
+const timeLeft = ref("00:00");
+var intervalTimer;
+
+function setTime(seconds) {
+  clearInterval(intervalTimer);
+  timer(seconds);
+}
+
+function timer(seconds) {
+  const now = Date.now();
+  const end = now + seconds * 1000;
+  displayTimeLeft(seconds);
+  // selectedTime.value=seconds;
+  countdown(end);
+}
+
+function countdown(end) {
+  intervalTimer = setInterval(() => {
+    const secondsLeft = Math.round((end - Date.now()) / 1000);
+    if (secondsLeft < 0) {
+      clearInterval(intervalTimer);
+      return;
+    }
+    displayTimeLeft(secondsLeft);
+  }, 1000);
+}
+
+function displayTimeLeft(secondsLeft) {
+  const minutes = Math.floor((secondsLeft % 3600) / 60);
+  const seconds = secondsLeft % 60;
+
+  timeLeft.value = `${zeroPadded(minutes)}:${zeroPadded(seconds)}`;
+}
+
+function zeroPadded(num) {
+  return num < 10 ? `0${num}` : num;
+}
+
+// Resend Otp Code
+const resendOtp =async () =>{
+  const res = await auth.resendOtp(verifyForm.phone);
+
+  if(res.status){
+    setTime(120)
+    ElNotification({
+      title: "Success",
+      message: "OTP send Successfully",
+      type: "success",
+      position: "top-left",
+    });
+  }
+}
 </script>
 <template>
   <div>
@@ -109,10 +170,9 @@ const otpVerify =async (values, { setErrors }) => {
                       placeholder="Name"
                       :class="{ 'is-invalid': errors.name }"
                     /><!--v-if-->
-                    <span class="text-danger" v-if="errors.name">
-                    </span>
+                    <span class="text-danger" v-if="errors.name"> </span>
                   </div>
-                  <div class="form-group"> 
+                  <div class="form-group">
                     <Field
                       name="email"
                       type="text"
@@ -120,10 +180,9 @@ const otpVerify =async (values, { setErrors }) => {
                       placeholder="email address"
                       :class="{ 'is-invalid': errors.email }"
                     /><!--v-if-->
-                    <span class="text-danger" v-if="errors.email">
-                    </span>
+                    <span class="text-danger" v-if="errors.email"> </span>
                   </div>
-                  <div class="form-group"> 
+                  <div class="form-group">
                     <Field
                       name="phone"
                       type="text"
@@ -132,8 +191,7 @@ const otpVerify =async (values, { setErrors }) => {
                       placeholder="enter your phone number"
                       :class="{ 'is-invalid': errors.phone }"
                     /><!--v-if-->
-                    <span class="text-danger" v-if="errors.phone">
-                    </span>
+                    <span class="text-danger" v-if="errors.phone"> </span>
                   </div>
 
                   <div class="form-group">
@@ -155,7 +213,7 @@ const otpVerify =async (values, { setErrors }) => {
                           'fa-eye': !showPassword,
                         }"
                       ></i></span
-                    ><!--v-if-->
+                    >
                   </div>
                   <div class="form-group">
                     <Field
@@ -165,9 +223,11 @@ const otpVerify =async (values, { setErrors }) => {
                       placeholder="ReType_password"
                       :class="{ 'is-invalid': errors.password_confirmation }"
                     />
-                    <span class="text-danger" v-if="errors.password_confirmation">{{
-                      errors.password
-                    }}</span>
+                    <span
+                      class="text-danger"
+                      v-if="errors.password_confirmation"
+                      >{{ errors.password }}</span
+                    >
                     <span @click="toggleShow" class="view-password"
                       ><i
                         class="fas text-success"
@@ -175,19 +235,9 @@ const otpVerify =async (values, { setErrors }) => {
                           'fa-eye-slash': showPassword,
                           'fa-eye': !showPassword,
                         }"
-                      ></i></span
-                    ><!--v-if-->
+                      ></i
+                    ></span>
                   </div>
-                  <!-- <div class="form-check mb-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="check"
-                      value=""
-                    /><label class="form-check-label" for="check"
-                      >Remember Me</label
-                    >
-                  </div> -->
                   <div class="form-button">
                     <button type="submit" :disabled="isSubmiting">
                       Register
@@ -213,7 +263,6 @@ const otpVerify =async (values, { setErrors }) => {
                   :validation-schema="schemaOtpVerify"
                   v-slot="{ errors, isSubmiting }"
                 >
-                  <!--v-if-->
                   <div class="form-group">
                     <Field
                       name="otp_code"
@@ -222,20 +271,33 @@ const otpVerify =async (values, { setErrors }) => {
                       v-model="verifyForm.otp_code"
                       placeholder="otp_code"
                       :class="{ 'is-invalid': errors.otp_code }"
-                    /><!--v-if-->
-                    <span class="text-danger" v-if="errors.otp_code">
-                    </span>
+                    />
+                    <span class="text-danger" v-if="errors.otp_code"> </span>
                   </div>
-                  
+                  <a
+                    href="javascript:void(0)"
+                    class="text-success otp_cs"
+                    v-if="timeLeft === '00:00'"
+                    @click="resendOtp"
+                  >
+                    Resend Otp
+                  </a>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-success otp_cs"
+                    v-else
+                  >
+                    {{ timeLeft }}
+                  </a>
+
                   <div class="form-button">
                     <button type="submit" :disabled="isSubmiting">
-                    Verify
+                      Verify
                       <span
                         v-show="isSubmiting"
                         class="spinner-border spinner-border-sm mr-1"
                       ></span>
                     </button>
-
                   </div>
                 </Form>
               </div>
@@ -258,4 +320,8 @@ const otpVerify =async (values, { setErrors }) => {
 
 <style>
 @import "@/assets/css/user-auth.css";
+
+.otp_cs{
+  float:right;
+}
 </style>
