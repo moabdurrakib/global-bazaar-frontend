@@ -1,4 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
+import { NProgress } from "nprogress";
 import { useAuth } from "@/stores";
 import { NotFound, Indexed, Shop, SingleProduct, Checkout } from "@/views/pages";
 import { SellerPages, SellerStore, SellerApply } from "@/views/pages/seller"
@@ -126,6 +127,10 @@ router.beforeEach((to, from, next) => {
         next()
     }
 
+})
+
+router.afterEach(() => {
+    NProgress.done();
 })
 
 export default router

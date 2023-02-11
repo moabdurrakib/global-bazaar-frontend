@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "element-plus": "^2.2.20",
     "latest-version": "^7.0.0",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.23",
     "pinia-plugin-persistedstate": "^2.3.0",
     "swiper": "^8.4.4",
