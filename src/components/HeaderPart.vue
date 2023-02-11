@@ -1,5 +1,5 @@
 <script setup>
-import { useAuth } from "@/stores";
+import { useAuth,useNotifcation } from "@/stores";
 import { storeToRefs } from "pinia";
 
 import { ElNotification } from "element-plus";
@@ -9,17 +9,14 @@ const auth = useAuth();
 const { user, loading } = storeToRefs(auth);
 
 const router = useRouter();
+
+const notify = useNotifcation();
 // logout
 const userLogout = async () => {
   const res = await auth.logout();
   if (res.status) {
     router.push({ name: "index.page" });
-    ElNotification({
-      title: "success",
-      message: "Logout Success",
-      type: "success",
-      position: "top-left",
-    });
+    notify.info("logout success");
   }
 };
 // search Icon

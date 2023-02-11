@@ -17,3 +17,6 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
 createApp(App).use(pinia).use(router).use(ElementPlus).mount('#app')
+app.config.errorHandler = (err, instance, info) => {
+    // report error to tracking services
+  }
