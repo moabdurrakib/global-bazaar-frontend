@@ -359,8 +359,8 @@ button:focus {
   background: var(--white);
 }
 .btn-outline:hover {
-  color: var(--white);
-  background: var(--primary);
+  color: var(--white) !important;
+  background: var(--primary) !important;
 }
 .menu-badge {
   font-size: 10px;

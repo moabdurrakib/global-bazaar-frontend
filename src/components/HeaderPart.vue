@@ -1,5 +1,5 @@
 <script setup>
-import { useAuth,useNotifcation } from "@/stores";
+import { useAuth,useNotification } from "@/stores";
 import { storeToRefs } from "pinia";
 
 import { ElNotification } from "element-plus";
@@ -10,7 +10,7 @@ const { user, loading } = storeToRefs(auth);
 
 const router = useRouter();
 
-const notify = useNotifcation();
+const notify = useNotification();
 // logout
 const userLogout = async () => {
   const res = await auth.logout();

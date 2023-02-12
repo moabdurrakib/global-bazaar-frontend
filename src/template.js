@@ -1,7 +1,6 @@
     import"./assets/vendor/bootstrap/jquery-1.12.4.min.js";
     import"./assets/vendor/bootstrap/popper.min.js";
     import"./assets/vendor/bootstrap/bootstrap.min.js";
-    // import"./assets/vendor/countdown/countdown.min.js";
     import"./assets/vendor/niceselect/nice-select.min.js";
     import"./assets/vendor/slickslider/slick.min.js";
     import"./assets/vendor/venobox/venobox.min.js";
