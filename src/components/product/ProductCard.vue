@@ -1,8 +1,9 @@
 <script setup>
+import {ProductPrice} from "@/components/product"
 
 const props = defineProps({
     products:{
-        type:String,
+        type:Object,
         required:true
     }
 })
@@ -14,7 +15,8 @@ const props = defineProps({
             <div class="product-card">
               <div class="product-media">
                 <div class="product-label">
-                  <label class="label-text sale">{{product.conditions}}</label>
+                  <label class="label-text new">{{product.conditions}}</label>
+                  <label class="label-text sale" v-if="product.discount">{{product.discount}}%</label>
                 </div>
                 <button class="product-wish wish">
                   <i class="fas fa-heart"></i></button
@@ -31,12 +33,10 @@ const props = defineProps({
                     :to="{ name: 'product.details' }"
                     class="product-image"
                   >
-                    Products Name</router-link
+                    {{ product.name }}</router-link
                   >
                 </h6>
-                <h6 class="product-price">
-                  <del>$34</del><span>$28<small></small></span>
-                </h6>
+                <ProductPrice :price="product.price" :discount="product.discount"/>
                 <button class="product-add" title="Add to Cart">
                   <i class="fas fa-shopping-basket"></i><span>Add</span>
                 </button>
