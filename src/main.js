@@ -17,7 +17,17 @@ pinia.use(piniaPluginPersistedstate)
 
 import "nprogress/nprogress.css"
 
-createApp(App).use(pinia).use(router).use(ElementPlus).mount('#app')
+const app =createApp(App);
+app.use(pinia);
+app.use(router)
+app.use(ElementPlus)
+app.mount('#app')
 // app.config.errorHandler = (err, instance, info) => {
 //     // report error to tracking services
 //   }
+
+app.config.globalProperties.$filters={
+    currencySymbol(value){
+        return "৳" +value.toLocaleString();
+    }
+}
