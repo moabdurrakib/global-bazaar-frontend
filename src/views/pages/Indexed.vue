@@ -29,12 +29,16 @@ const pro = useProduct();
 
 const{sliders} = storeToRefs(slider);
 const{categories} = storeToRefs(cat);
-const{products} = storeToRefs(pro);
+const{products,popular,sales,winter,feature} = storeToRefs(pro);
 
 onMounted(() => {
   slider.getData(); 
   cat.getData()
   pro.getData();
+  pro.getData("sale");
+  pro.getData("popular");
+  pro.getData("winter");
+  pro.getData("feature");
 })
 
 //slider section end
@@ -107,11 +111,74 @@ onMounted(() => {
         <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
+              <h2>Popular items</h2>
+            </div>
+          </div>
+        </div>
+        <ProductCard :products="popular"/>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-btn-25">
+              <a href="shop-4column.html" class="btn btn-outline"
+                ><i class="fas fa-eye"></i><span>show more</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section recent-part">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-heading">
               <h2>recently sold items</h2>
             </div>
           </div>
         </div>
-        <ProductCard :products="products"/>
+        <ProductCard :products="sales"/>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-btn-25">
+              <a href="shop-4column.html" class="btn btn-outline"
+                ><i class="fas fa-eye"></i><span>show more</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section recent-part">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-heading">
+              <h2>Winter items</h2>
+            </div>
+          </div>
+        </div>
+        <ProductCard :products="winter"/>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-btn-25">
+              <a href="shop-4column.html" class="btn btn-outline"
+                ><i class="fas fa-eye"></i><span>show more</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section recent-part">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-heading">
+              <h2>Feature items</h2>
+            </div>
+          </div>
+        </div>
+        <ProductCard :products="feature"/>
         <div class="row">
           <div class="col-lg-12">
             <div class="section-btn-25">
@@ -124,7 +191,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <section class="section recent-part">
+    <!-- <section class="section recent-part">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -405,7 +472,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section class="section recent-part">
       <div class="container">
