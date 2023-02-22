@@ -6,6 +6,7 @@ export const useProduct = defineStore('product', {
         sales:[],
         popular:[],
         winter:[],
+        newItems:[],
         feature:[],
         loading: false,
     }),
@@ -22,7 +23,7 @@ export const useProduct = defineStore('product', {
                     }else if(type ==="popular"){
                         this.popular = res.data
                     }else if(type ==="new"){
-                        this.new = res.data
+                        this.newItems = res.data
                     }else if(type ==="winter"){
                         this.winter = res.data
                     }else if(type ==="feature"){
