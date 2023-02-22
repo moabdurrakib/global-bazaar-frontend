@@ -11,6 +11,8 @@ import router from './router/index'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
+import "skeleton-screen-css";
+
 
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)

@@ -17,6 +17,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.30",
     "pinia-plugin-persistedstate": "^2.3.0",
+    "skeleton-screen-css": "^1.1.0",
     "swiper": "^8.4.4",
     "vee-validate": "^4.7.2",
     "vue": "^3.2.41",
