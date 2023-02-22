@@ -66,7 +66,7 @@ onMounted(() => {
                 <swiper-slide
                   v-for="(slider, index) in sliders.data"
                   :key="index"
-                  ><a href="#"><img :src="slider.image" alt="" /></a
+                  ><a href="#"><img :src="$filters.makeImagePath(slider.image)" alt="" /></a
                 ></swiper-slide>
               </swiper>
             </div>
@@ -95,7 +95,7 @@ onMounted(() => {
               <ul>
                 <li>
                   <a class="suggest-card" href="shop-4column.html">
-                    <img :src="category.image" alt="" />
+                    <img :src="$filters.makeImagePath(category.image)" alt="" />
                   </a>
                 </li>
               </ul>
@@ -236,7 +236,7 @@ onMounted(() => {
                           :to="{ name: 'product.details' }"
                           class="product-image"
                         >
-                          <img :src="product.thumbnail" alt="product"
+                          <img :src="$filters.makeImagePath(product.thumbnail)" alt="product"
                         /></router-link>
                       </div>
                       <div class="product-content">

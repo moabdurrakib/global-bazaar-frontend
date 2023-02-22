@@ -27,6 +27,9 @@ app.mount('#app')
 //   }
 
 app.config.globalProperties.$filters={
+    makeImagePath(img){
+        return import.meta.env.VITE_API_URL + "/" + img;
+    },
     currencySymbol(value){
         return "৳" +value.toLocaleString();
     }

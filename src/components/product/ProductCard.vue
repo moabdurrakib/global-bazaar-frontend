@@ -24,7 +24,7 @@ const props = defineProps({
                   :to="{ name: 'product.details' }"
                   class="product-image"
                 >
-                  <img :src="product.thumbnail" alt="product"
+                  <img :src="$filters.makeImagePath(product.thumbnail)" alt="product"
                 /></router-link>
               </div>
               <div class="product-content">
