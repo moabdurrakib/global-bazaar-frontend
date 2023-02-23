@@ -39,9 +39,6 @@ export const useCart = defineStore('cart', {
                     let index= this.cartItems.findIndex((i)=>i.id===item.id)
                     console.log(index)
                     this.cartItems[index]["quantity"] += 1;
-                    console.log(this.cartItems[index])
-                    console.log(this.cartItems["quantity"])
-                    console.log(this.cartItems[index]["quantity"]);
                 }else{
                     
                     this.cartItems.push(item);
@@ -49,7 +46,13 @@ export const useCart = defineStore('cart', {
             }else{
                 this.cartItems.push(item);
             }
-            }
+            },
+
+            async destroy(index){
+                if(this.cartItems.length > 0){
+                    this.cartItems.splice(index,1)
+                    }
+                 }
     },
  });
 

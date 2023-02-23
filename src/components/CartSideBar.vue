@@ -12,6 +12,10 @@ const cartClose = () => {
     $(".cart-sidebar").removeClass("active"),
     $(".backdrop").fadeOut();
 };
+
+const deleteCart =(index)=>{
+  cart.destroy(index);
+}
 </script>
 <template>
   <div>
@@ -29,7 +33,7 @@ const cartClose = () => {
           <div class="cart-media">
             <a href="#"
               ><img :src="$filters.makeImagePath(cart.thumbnail)" alt="product" /></a
-            ><button class="cart-delete">
+            ><button class="cart-delete" @click.prevent="deleteCart(index)">
               <i class="far fa-trash-alt"></i>
             </button>
           </div>
