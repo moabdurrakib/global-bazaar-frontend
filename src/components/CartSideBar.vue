@@ -4,7 +4,7 @@ import{storeToRefs} from 'pinia'
 
 
 const cart = useCart()
-const {cartItems,cartItemsCount}=storeToRefs(cart);
+const {cartItems,cartItemsCount,totalPrice}=storeToRefs(cart);
 
 
 const cartClose = () => {
@@ -52,7 +52,7 @@ const cartClose = () => {
                   <i class="icofont-plus"></i>
                 </button>
               </div>
-              <h6>{{ cart.price*cart.quantity }}</h6>
+              <h6>{{ $filters.currencySymbol(cart.price*cart.quantity) }}</h6>
             </div>
           </div>
         </li>
@@ -60,7 +60,7 @@ const cartClose = () => {
       <div class="cart-footer">
         <RouterLink :to="{ name: 'chekcout.page' }" class="cart-checkout-btn">
           <span class="checkout-label">Proceed to Checkout</span
-          ><span class="checkout-price">$369.78</span></RouterLink
+          ><span class="checkout-price">{{ $filters.currencySymbol(totalPrice) }}</span></RouterLink
         >
       </div>
     </aside>

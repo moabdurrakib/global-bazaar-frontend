@@ -3,7 +3,7 @@ import { ElNotification } from "element-plus"
 export const useNotification = defineStore('notification', {
     state: () => ({
         type: {
-            success: "Success",
+            success: "success",
             warning: "warning",
             info: "info",
             error: "error"

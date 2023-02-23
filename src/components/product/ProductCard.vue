@@ -1,9 +1,10 @@
 <script setup>
-import{useCart} from '../../stores'
+import{useCart,useNotification} from '../../stores'
 import { ref } from "@vue/reactivity";
 import {ProductPrice} from "@/components/product"
 
 const cart = useCart()
+const notify = useNotification()
 
 const props = defineProps({
     products:{
@@ -29,6 +30,7 @@ function addToCart(product){
   price: price.value,
   thumbnail: product.thumbnail,
 })
+notify.Success(`${product.name} Added Your Cart`);
 }
 
 

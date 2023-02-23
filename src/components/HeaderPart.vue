@@ -8,7 +8,7 @@ import { useRouter } from "vue-router";
 const auth = useAuth();
 const { user, loading } = storeToRefs(auth);
 const cart =useCart()
-const{cartItemsCount}=storeToRefs(cart)
+const{cartItemsCount,totalPrice}=storeToRefs(cart)
 
 const router = useRouter();
 
@@ -180,7 +180,7 @@ const headerCart = () => {
               title="Cartlist"
             >
               <i class="fas fa-shopping-basket"></i><sup>{{ cartItemsCount }}</sup
-              ><span>total price<small>$345.00</small></span>
+              ><span>total price<small>{{$filters.currencySymbol(totalPrice)}}</small></span>
             </button>
           </div>
         </div>
