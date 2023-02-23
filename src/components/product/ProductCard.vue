@@ -1,5 +1,9 @@
 <script setup>
+import{useCart} from '../../stores'
+import { ref } from "@vue/reactivity";
 import {ProductPrice} from "@/components/product"
+
+const cart = useCart()
 
 const props = defineProps({
     products:{
@@ -7,6 +11,29 @@ const props = defineProps({
         required:true
     }
 })
+
+const price =ref()
+function addToCart(product){
+  if(product.discount){
+    var firstPrice =product.price
+    var discount =product.discount/100;
+    var totalPrice = firstPrice -firstPrice*discount;
+    price.value = totalPrice.toFixed();
+  } else{
+      price.value = product.price
+  }
+
+  cart.addToCart({
+  id: product.id,
+  name: product.name,
+  price: price.value,
+  thumbnail: product.thumbnail,
+})
+}
+
+
+
+
 </script>
 <template>
     <div>
@@ -37,7 +64,7 @@ const props = defineProps({
                   >
                 </h6>
                 <ProductPrice :price="product.price" :discount="product.discount"/>
-                <button class="product-add" title="Add to Cart">
+                <button class="product-add" title="Add to Cart" @click.prevent="addToCart(product)">
                   <i class="fas fa-shopping-basket"></i><span>Add</span>
                 </button>
               </div>
