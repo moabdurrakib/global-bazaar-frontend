@@ -1,5 +1,5 @@
 <script setup>
-import { useAuth,useNotification } from "@/stores";
+import { useAuth,useNotification,useCart } from "@/stores";
 import { storeToRefs } from "pinia";
 
 import { ElNotification } from "element-plus";
@@ -7,6 +7,8 @@ import { useRouter } from "vue-router";
 
 const auth = useAuth();
 const { user, loading } = storeToRefs(auth);
+const cart =useCart()
+const{cartItemsCount}=storeToRefs(cart)
 
 const router = useRouter();
 
@@ -177,7 +179,7 @@ const headerCart = () => {
               @click="headerCart"
               title="Cartlist"
             >
-              <i class="fas fa-shopping-basket"></i><sup>9+</sup
+              <i class="fas fa-shopping-basket"></i><sup>{{ cartItemsCount }}</sup
               ><span>total price<small>$345.00</small></span>
             </button>
           </div>
