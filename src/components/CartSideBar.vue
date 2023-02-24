@@ -27,15 +27,19 @@ const cartIncrement = (index) => {
   <div>
     <aside class="cart-sidebar">
       <div class="cart-header">
-        <div class="cart-total">
+        <div class="cart-total" v-if="cartItemsCount !==0">
           <i class="fas fa-shopping-basket"></i
           ><span>total item <span style="color:darkgreen">{{ cartItemsCount }}</span></span>
+        </div>
+
+        <div v-else class="cart-total">
+          <span>Your Cart is Empty...</span>
         </div>
         <button class="cart-close" @click="cartClose">
           <i class="icofont-close"></i>
         </button>
       </div>
-      <ul class="cart-list">
+      <ul class="cart-list" v-if="cartItemsCount !==0">
         <li class="cart-item" v-for="(cart, index) in cartItems" :key="index">
           <div class="cart-media">
             <a href="#"
@@ -76,6 +80,12 @@ const cartIncrement = (index) => {
           </div>
         </li>
       </ul>
+      <ul class="cart-list">
+        <li class="cart-item margin_cs">
+          <img src="@/assets/images/cart/emptyCart.png" class="cart-image" alt="">
+          <h3 class="text-center">Your Cart is Empty.</h3>
+        </li>
+      </ul>
       <div class="cart-footer">
         <RouterLink :to="{ name: 'chekcout.page' }" class="cart-checkout-btn">
           <span class="checkout-label">Proceed to Checkout</span
@@ -87,3 +97,12 @@ const cartIncrement = (index) => {
     </aside>
   </div>
 </template>
+
+<style>
+.cart-image{
+  width: 50%;
+}
+.margin_cs{
+  margin-top: 100px;
+}
+</style>
