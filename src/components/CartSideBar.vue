@@ -39,8 +39,11 @@ const cartIncrement = (index) => {
           <i class="icofont-close"></i>
         </button>
       </div>
-      <ul class="cart-list" v-if="cartItemsCount !==0">
-        <li class="cart-item" v-for="(cart, index) in cartItems" :key="index">
+
+      <transition name="switch" mode="out-in">
+    
+      <TransitionGroup name="list" tag="ul" class="cart-list" v-if="cartItemsCount !==0 ">
+        <li class="cart-item" v-for="(cart, index) in cartItems" :key="cart.id">
           <div class="cart-media">
             <a href="#"
               ><img
@@ -79,13 +82,15 @@ const cartIncrement = (index) => {
             </div>
           </div>
         </li>
-      </ul>
-      <ul class="cart-list">
+      </TransitionGroup>
+    <ul class="cart-list" v-else>
         <li class="cart-item margin_cs">
           <img src="@/assets/images/cart/emptyCart.png" class="cart-image" alt="">
           <h3 class="text-center">Your Cart is Empty.</h3>
         </li>
       </ul>
+      </transition>
+    
       <div class="cart-footer">
         <RouterLink :to="{ name: 'chekcout.page' }" class="cart-checkout-btn">
           <span class="checkout-label">Proceed to Checkout</span
@@ -104,5 +109,24 @@ const cartIncrement = (index) => {
 }
 .margin_cs{
   margin-top: 100px;
+}
+.list-move,
+.list-enter-active,
+.list-leave-active{
+  transition: all 0.5s ease;
+}
+.list-enter-form,
+.list-leave-to{
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.switch-leave-to{
+  opacity: 0;
+  transform: translateY(20px);
+}
+.switch-enter-active,
+.switch-leave-active{
+  transition: all 0.5s ease;
 }
 </style>
