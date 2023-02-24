@@ -52,7 +52,14 @@ export const useCart = defineStore('cart', {
                 if(this.cartItems.length > 0){
                     this.cartItems.splice(index,1)
                     }
-                 }
+                 },
+            async decrement(index){
+                if(this.cartItems.length > 0){
+                    if(this.cartItems[index]["quantity"]!==1){
+                        this.cartItems[index]["quantity"]-=1;
+                    }
+                    }
+                 } 
     },
  });
 
