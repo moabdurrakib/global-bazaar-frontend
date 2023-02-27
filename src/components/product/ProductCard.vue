@@ -34,6 +34,13 @@ notify.Success(`${product.name} Added Your Cart`);
 }
 
 
+// Add to Wishlist
+
+const addToWishlist =()=>{
+  $("#login-modal").modal("show");
+}
+
+
 
 
 </script>
@@ -47,7 +54,7 @@ notify.Success(`${product.name} Added Your Cart`);
                   <label class="label-text new">{{product.conditions}}</label>
                   <label class="label-text sale" v-if="product.discount">{{product.discount}}%</label>
                 </div>
-                <button class="product-wish wish">
+                <button class="product-wish wish" @click.prevent="addToWishlist(product)">
                   <i class="fas fa-heart"></i></button
                 ><router-link
                   :to="{ name: 'product.details' }"

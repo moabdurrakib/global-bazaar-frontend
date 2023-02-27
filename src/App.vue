@@ -8,6 +8,8 @@
     <CartSideBar />
     <MobileMenu />
 
+    <LoginModal />
+
     <!-- Content part -->
     <!-- <router-view> </router-view> -->
     <router-view v-slot="{ Component }">
@@ -29,6 +31,7 @@ import {
   MobileMenu,
   NewsLetter,
   FooterPart,
+  LoginModal,
 } from "@/components";
 </script>
 

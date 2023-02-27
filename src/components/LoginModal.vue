@@ -1,6 +1,55 @@
+<script setup>
+import { ref } from "vue";
+import { useAuth } from "@/stores/auth";
+// import { storeToRefs } from "pinia";
+import { Field, Form } from "vee-validate";
+import { ElNotification } from "element-plus";
+
+import * as yup from "yup";
+
+
+const schema = yup.object({
+  phone: yup.string().required(),
+  password: yup.string().required().min(8),
+});
+
+const auth = useAuth();
+// const { errors } = storeToRefs(auth);
+
+// router
+
+
+// vee
+
+const getToken = async () => {
+  await  axios.get("sanctum/csrf-cookie")
+}
+
+const loginSubmit = async (values, { setErrors }) => {
+  const res = await auth.login(values);
+
+  if (res.data) {
+    // alert("login success");
+    // router.push({ name: 'index.page' });
+    ElNotification({
+      title: "Login Success",
+      message: "Welcome to the home Page",
+      type: 'success',
+    });
+  } else {
+    setErrors(res);
+  }
+};
+
+const showPassword = ref(false);
+
+const toggleShow = () => {
+  showPassword.value = !showPassword.value;
+};
+</script>
 <template>
     <div>
-        <div class="modal fade" id="product-view">
+        <div class="modal fade" id="login-modal">
       <div class="modal-dialog">
         <div class="modal-content">
           <button
@@ -9,125 +58,84 @@
           ></button>
           <div class="product-view">
             <div class="row">
-              <div class="col-md-6 col-lg-6">
-                <div class="view-gallery">
-                  <div class="view-label-group">
-                    <label class="view-label new">new</label
-                    ><label class="view-label off">-10%</label>
-                  </div>
-                  <ul class="preview-slider slider-arrow">
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                  </ul>
-                  <ul class="thumb-slider">
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                    <li><img src="../assets/images/product/01.jpg" alt="product" /></li>
-                  </ul>
-                </div>
+                      <div class="col-12 col-md-12 col-lg-12">
+            <div class="user-form-card">
+              <div class="user-form-title">
+                <h2>Customer Login</h2>
+                <p>Use your credentials to access</p>
               </div>
-              <div class="col-md-6 col-lg-6">
-                <div class="view-details">
-                  <h3 class="view-name">
-                    <a href="product-video.html">existing product name</a>
-                  </h3>
-                  <div class="view-meta">
-                    <p>SKU:<span>1234567</span></p>
-                    <p>BRAND:<a href="#">radhuni</a></p>
+              <div class="user-form-group" id="axiosForm">
+                <Form
+                  class="user-form"
+                  @submit="loginSubmit"
+                  :validation-schema="schema"
+                  v-slot="{ errors, isSubmiting }"
+                >
+                  <!--v-if-->
+                  <div class="form-group">
+                    <Field
+                      name="phone"
+                      type="text"
+                      class="form-control"
+                      placeholder="phone no"
+                      :class="{ 'is-invalid': errors.phone }"
+                    /><!--v-if-->
+                    <span class="text-danger" v-if="errors.phone">{{
+                      errors.phone
+                    }}</span>
                   </div>
-                  <div class="view-rating">
-                    <i class="active icofont-star"></i
-                    ><i class="active icofont-star"></i
-                    ><i class="active icofont-star"></i
-                    ><i class="active icofont-star"></i
-                    ><i class="icofont-star"></i
-                    ><a href="product-video.html">(3 reviews)</a>
+
+                  <div class="form-group">
+                    <Field
+                      name="password"
+                      :type="showPassword ? 'text' : 'password'"
+                      class="form-control"
+                      placeholder="password"
+                      :class="{ 'is-invalid': errors.password }"
+                    />
+                    <span class="text-danger" v-if="errors.password">{{
+                      errors.password
+                    }}</span>
+                    <span @click="toggleShow" class="view-password"
+                      ><i
+                        class="fas text-success"
+                        :class="{
+                          'fa-eye-slash': showPassword,
+                          'fa-eye': !showPassword,
+                        }"
+                      ></i></span
+                    ><!--v-if-->
                   </div>
-                  <h3 class="view-price">
-                    <del>$38.00</del><span>$24.00<small>/per kilo</small></span>
-                  </h3>
-                  <p class="view-desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit non
-                    tempora magni repudiandae sint suscipit tempore quis maxime
-                    explicabo veniam eos reprehenderit fuga
-                  </p>
-                  <div class="view-list-group">
-                    <label class="view-list-title">tags:</label>
-                    <ul class="view-tag-list">
-                      <li><a href="#">organic</a></li>
-                      <li><a href="#">vegetable</a></li>
-                      <li><a href="#">chilis</a></li>
-                    </ul>
-                  </div>
-                  <div class="view-list-group">
-                    <label class="view-list-title">Share:</label>
-                    <ul class="view-share-list">
-                      <li>
-                        <a
-                          href="#"
-                          class="icofont-facebook"
-                          title="Facebook"
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="icofont-twitter" title="Twitter"></a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="icofont-linkedin"
-                          title="Linkedin"
-                        ></a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="icofont-instagram"
-                          title="Instagram"
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="view-add-group">
-                    <button class="product-add" title="Add to Cart">
-                      <i class="fas fa-shopping-basket"></i
-                      ><span>add to cart</span>
-                    </button>
-                    <div class="product-action">
-                      <button class="action-minus" title="Quantity Minus">
-                        <i class="icofont-minus"></i></button
-                      ><input
-                        class="action-input"
-                        title="Quantity Number"
-                        type="text"
-                        name="quantity"
-                        value="1"
-                      /><button class="action-plus" title="Quantity Plus">
-                        <i class="icofont-plus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="view-action-group">
-                    <a class="view-wish wish" href="#" title="Add Your Wishlist"
-                      ><i class="icofont-heart"></i><span>add to wish</span></a
-                    ><a
-                      class="view-compare"
-                      href="compare.html"
-                      title="Compare This Item"
-                      ><i class="fas fa-random"></i><span>Compare This</span></a
+                  <div class="form-check mb-3">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="check"
+                      value=""
+                    /><label class="form-check-label" for="check"
+                      >Remember Me</label
                     >
                   </div>
-                </div>
+                  <div class="form-button">
+                    <button type="submit" :disabled="isSubmiting">
+                      login
+                      <span
+                        v-show="isSubmiting"
+                        class="spinner-border spinner-border-sm mr-1"
+                      ></span>
+                    </button>
+                   <p>
+                Don't have any account?
+                <router-link :to="{ name: 'user.register' }"
+                  >register here</router-link
+                >
+              </p>
+                  </div>
+                </Form>
               </div>
+            </div>
+
+          </div>
             </div>
           </div>
         </div>
@@ -135,3 +143,7 @@
     </div>
     </div>
 </template>
+
+<style>
+@import "@/assets/css/user-auth.css";
+</style>
