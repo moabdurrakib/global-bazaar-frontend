@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { useAuth } from "@/stores/auth";
+import { useAuth,useNotification } from "@/stores";
 // import { storeToRefs } from "pinia";
 import { Field, Form } from "vee-validate";
 import { ElNotification } from "element-plus";
@@ -14,6 +14,8 @@ const schema = yup.object({
 });
 
 const auth = useAuth();
+
+const notify= useNotification()
 // const { errors } = storeToRefs(auth);
 
 // router
@@ -25,17 +27,13 @@ const getToken = async () => {
   await  axios.get("sanctum/csrf-cookie")
 }
 
-const loginSubmit = async (values, { setErrors }) => {
+const loginSubmit = async (values, { setErrors,resetForm }) => {
   const res = await auth.login(values);
 
   if (res.data) {
-    // alert("login success");
-    // router.push({ name: 'index.page' });
-    ElNotification({
-      title: "Login Success",
-      message: "Welcome to the home Page",
-      type: 'success',
-    });
+    resetForm()
+  router.push({name:"index.page"})
+    notify.Success("Login SuccessFull")
   } else {
     setErrors(res);
   }

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { useAuth } from "@/stores/auth";
+import { useAuth } from "@/stores";
 // import { storeToRefs } from "pinia";
 import { Field, Form } from "vee-validate";
 import { ElNotification } from "element-plus";
